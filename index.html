@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Macro Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app-header card">
+        <div>
+          <h1>Macro Tracker</h1>
+          <p>Track weighed meals in grams and hit your daily targets.</p>
+        </div>
+      </header>
+
+      <section class="card goals-card">
+        <h2>Daily Goals</h2>
+        <p class="hint">Protein is pre-filled to 180g by default.</p>
+        <form id="goals-form" class="goals-grid" autocomplete="off">
+          <label>
+            Calories
+            <input id="goal-calories" type="number" min="0" step="1" placeholder="e.g. 2300" />
+          </label>
+          <label>
+            Protein (g)
+            <input id="goal-protein" type="number" min="0" step="0.1" value="180" required />
+          </label>
+          <label>
+            Carbs (g)
+            <input id="goal-carbs" type="number" min="0" step="0.1" placeholder="e.g. 250" />
+          </label>
+          <label>
+            Fat (g)
+            <input id="goal-fat" type="number" min="0" step="0.1" placeholder="e.g. 70" />
+          </label>
+          <button type="submit" class="btn primary">Save Goals</button>
+        </form>
+      </section>
+
+      <section class="card daily-overview">
+        <h2>Daily Overview</h2>
+        <div id="daily-totals" class="macro-grid"></div>
+        <div id="feedback-list" class="feedback-list"></div>
+      </section>
+
+      <section class="meals-actions card">
+        <h2>Meals</h2>
+        <form id="meal-form" class="meal-form" autocomplete="off">
+          <input
+            id="meal-name"
+            type="text"
+            placeholder="Add meal name (e.g. Breakfast)"
+            required
+          />
+          <button class="btn primary" type="submit">Add Meal</button>
+        </form>
+      </section>
+
+      <section id="meals-container" class="meals-container"></section>
+    </main>
+
+    <template id="meal-template">
+      <article class="meal card">
+        <header class="meal-header">
+          <h3 class="meal-title"></h3>
+          <div class="meal-actions">
+            <button class="btn ghost meal-edit-btn" type="button">Edit</button>
+            <button class="btn ghost danger meal-delete-btn" type="button">Delete</button>
+          </div>
+        </header>
+
+        <form class="food-form" autocomplete="off">
+          <div class="food-grid">
+            <input name="name" type="text" placeholder="Food name" required />
+            <input name="grams" type="number" min="0" step="0.1" placeholder="Weight (g)" required />
+            <input name="calories" type="number" min="0" step="0.1" placeholder="Calories" required />
+            <input name="protein" type="number" min="0" step="0.1" placeholder="Protein (g)" required />
+            <input name="carbs" type="number" min="0" step="0.1" placeholder="Carbs (g)" required />
+            <input name="fat" type="number" min="0" step="0.1" placeholder="Fat (g)" required />
+          </div>
+          <button class="btn" type="submit">Add Food</button>
+        </form>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Food</th>
+                <th>Grams</th>
+                <th>Calories</th>
+                <th>Protein</th>
+                <th>Carbs</th>
+                <th>Fat</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="food-list"></tbody>
+          </table>
+        </div>
+
+        <div class="meal-totals"></div>
+      </article>
+    </template>
+
+    <script src="script.js"></script>
+  </body>
+</html>
